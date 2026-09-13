@@ -1,13 +1,5 @@
-// ==========================================
-// NAVIGATION + ACTIVE LINK
-// ==========================================
-
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll("nav a");
-
-// ------------------------------------------
-// NAVIGATION CLICK
-// ------------------------------------------
 
 navLinks.forEach(link => {
 
@@ -15,7 +7,6 @@ navLinks.forEach(link => {
 
         const targetId = this.getAttribute("href");
 
-        // Ignore external links and resume link
         if (!targetId || !targetId.startsWith("#")) {
             return;
         }
@@ -31,7 +22,6 @@ navLinks.forEach(link => {
                 block: "start"
             });
 
-            // Update URL hash
             history.pushState(null, "", targetId);
         }
 
@@ -39,10 +29,6 @@ navLinks.forEach(link => {
 
 });
 
-
-// ------------------------------------------
-// ACTIVE NAVIGATION LINK
-// ------------------------------------------
 
 window.addEventListener("scroll", () => {
 
@@ -57,24 +43,17 @@ window.addEventListener("scroll", () => {
             window.scrollY >= sectionTop &&
             window.scrollY < sectionTop + sectionHeight
         ) {
-
             current = section.getAttribute("id");
-
         }
 
     });
-
 
     navLinks.forEach(link => {
 
         link.classList.remove("active");
 
-        if (
-            link.getAttribute("href") === "#" + current
-        ) {
-
+        if (link.getAttribute("href") === "#" + current) {
             link.classList.add("active");
-
         }
 
     });
